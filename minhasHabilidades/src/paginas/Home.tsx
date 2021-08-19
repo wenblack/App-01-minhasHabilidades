@@ -48,6 +48,20 @@ export function Home() {
 
     }
 
+    function handleRemoverHabilidade(id: string) {
+
+
+        //definindo de onde será puxado o ID,chamando variavel de estadoAtual
+        setMinhasHabilidades(estadoAtual => estadoAtual.filter(
+            habilidade => habilidade.id !== id
+        ));
+    }
+
+
+
+
+
+
     /*hook executado por padrão quando a tela renderiza, ao colocar 
       a depenencia entre [], ele é executado naquele momento */
     useEffect(() => {
@@ -96,7 +110,10 @@ export function Home() {
                 keyExtractor={item => item.id}
                 renderItem={({ item }) => (
                     <CartaoHabilidades
-                        habilidades={item.name} />
+                        habilidades={item.name}
+                        //Executa função no clique e pega o ID do item clicado
+                        onPress={() => handleRemoverHabilidade(item.id)}
+                    />
 
                 )}
             />
